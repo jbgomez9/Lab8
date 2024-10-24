@@ -12,10 +12,12 @@ public class CustomListTest {
      * create a mocklist for my citylist
      * @return
      */
+
     public CustomList MockCityList(){
         list = new CustomList(null,new ArrayList<>());
         return list;
     }
+
     /**
      * get the size of the list
      * increase the list by adding a new city
@@ -29,6 +31,7 @@ public class CustomListTest {
         list.addCity(new City("Estevan", "SK"));
         assertEquals(list.getCount(),listSize + 1);
     }
+
     /**
      * check if the city added to the list can be found
      * and if a city not in the list returns false.
@@ -41,6 +44,7 @@ public class CustomListTest {
         assertEquals(true, list.hasCity(cityToAdd));
         assertEquals(false, list.hasCity(new City("Unknown", "XX")));
     }
+
     /**
      * tests the deletion of a city from the list
      * and checks that the count of cities decreases by one
@@ -57,4 +61,15 @@ public class CustomListTest {
         assertEquals(false, list.hasCity(cityToDelete));
     }
 
+    /**
+     * checks if the method returns the correct number
+     * of cities in the list after adding multiple cities.
+     */
+    @Test
+    public void countCitiesTest() {
+        list = MockCityList();
+        list.addCity(new City("Estevan", "SK"));
+        list.addCity(new City("Moose Jaw", "SK"));
+        assertEquals(2, list.countCities());
+    }
 }
