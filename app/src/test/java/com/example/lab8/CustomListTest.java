@@ -29,7 +29,10 @@ public class CustomListTest {
         list.addCity(new City("Estevan", "SK"));
         assertEquals(list.getCount(),listSize + 1);
     }
-
+    /**
+     * check if the city added to the list can be found
+     * and if a city not in the list returns false.
+     */
     @Test
     public void hasCityTest() {
         list = MockCityList();
@@ -37,6 +40,21 @@ public class CustomListTest {
         list.addCity(cityToAdd);
         assertEquals(true, list.hasCity(cityToAdd));
         assertEquals(false, list.hasCity(new City("Unknown", "XX")));
+    }
+    /**
+     * tests the deletion of a city from the list
+     * and checks that the count of cities decreases by one
+     * after removing a city that was previously added
+     */
+    @Test
+    public void deleteCityTest() {
+        list = MockCityList();
+        City cityToDelete = new City("Estevan", "SK");
+        list.addCity(cityToDelete);
+        int listSize = list.getCount();
+        list.deleteCity(cityToDelete);
+        assertEquals(listSize - 1, list.getCount());
+        assertEquals(false, list.hasCity(cityToDelete));
     }
 
 }
